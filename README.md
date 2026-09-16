@@ -15,3 +15,11 @@ React + Vite で作成したシンプルなタスクボードアプリです。
 npm install
 npm run dev
 ```
+
+## 公開（GitHub Pages）
+
+`main` ブランチに push すると GitHub Actions（[.github/workflows/deploy.yml](.github/workflows/deploy.yml)）が自動でビルドし、GitHub Pages に公開します。
+
+公開URL: https://Yuki-c6.github.io/task-board/
+
+初回のみ、リポジトリの Settings > Pages で Source を「GitHub Actions」に設定してください。
