@@ -4,7 +4,29 @@
 
 ## プロジェクト概要
 
-task-board プロジェクト。（プロジェクトの詳細は今後の開発に応じて追記してください）
+task-board プロジェクト。タスクの追加・完了切り替え・削除ができるシンプルなタスクボードアプリ。タスクは `localStorage` に保存され、ページをリロードしても消えない。
+
+## デプロイ先
+
+https://yuki-c6.github.io/task-board/
+
+`main` ブランチへの push をトリガーに、GitHub Actions（[.github/workflows/deploy.yml](.github/workflows/deploy.yml)）が自動でビルド・デプロイする。
+
+## 技術スタック
+
+- [React](https://react.dev/) 19（関数コンポーネント + Hooks）
+- [Vite](https://vite.dev/) 8（開発サーバー・ビルド）
+- CSS（コンポーネントごとのプレーンな `.css` ファイル。CSS-in-JS やCSSフレームワークは未使用）
+- [oxlint](https://oxc.rs/) （Lint）
+- ブラウザの `localStorage` によるクライアントサイドの永続化（バックエンド・DBなし）
+- GitHub Actions + GitHub Pages（デプロイ）
+
+## コンポーネントの命名規則
+
+- コンポーネントファイルは `PascalCase.jsx`（例: `TaskBoard.jsx`）。1ファイルにつき1コンポーネントを `function` 宣言で定義し、末尾で `export default` する。
+- 対応するスタイルは同名の `PascalCase.css`（例: `TaskBoard.css`）としてコンポーネントと同じディレクトリに置き、コンポーネント側で `import './ComponentName.css'` する。
+- ルート直下の `src/App.jsx` はエントリーポイント用コンポーネントとし、実際の機能は `src/` 配下の個別コンポーネント（例: `TaskBoard`）に実装する。
+- CSSのクラス名はケバブケース（例: `task-form`, `delete-button`）を用いる。
 
 ## Git 運用ルール
 
@@ -25,4 +47,9 @@ task-board プロジェクト。（プロジェクトの詳細は今後の開発
 
 ## 開発コマンド
 
-（ビルド・テスト・Lint などのコマンドが決まったらここに追記してください）
+```bash
+npm run dev      # 開発サーバーを起動
+npm run build    # 本番用ビルド（dist/ に出力）
+npm run preview  # ビルド結果をローカルでプレビュー
+npm run lint      # oxlint による Lint
+```
